@@ -1,0 +1,585 @@
+<!DOCTYPE html>  
+<html lang="en">
+   <head>
+      <title>Base converter</title>
+      <script>
+         <!--
+         
+           var hex = "0123456789ABCDEF";
+           var decimal = "0123456789"
+           var binary = "01";
+         var Binary = /^[0-1]/;
+         var notdecimal = /^[a-zA-Z.!?`~@#$%^,>?-]/;
+         var notbinary = /^[a-zA-Z.!?`~@#$%^,>?-]/;
+         var nothexdecimal = /^[a-zG-Z.!?`~@#$%^,>?-]/;
+         var halfforoutofrange = /^[&*()_+={}[]|\:;"'<]/;
+         
+           function Convert()
+           {
+             var choice = document.info.choice.value;
+             var text = document.info.input.value;
+         
+         
+             switch(choice)
+             {
+               case "Binary-to-Decimal":
+                 document.info.output.value = binary2decimal(text);
+                 break;
+              case "Binary-to-Hex":
+                 document.info.output.value = binary2hex(text);
+                 break;
+               case "Decimal-to-Binary":
+                 document.info.output.value = decimal2binary(text);
+                 break;
+               case "Decimal-to-Hex":
+                 document.info.output.value = decimal2hex(text);
+                 break;
+               case "Hex-to-Binary":
+                 document.info.output.value = hex2binary(text);
+                 break;
+               case "Hex-to-Decimal":
+                 document.info.output.value = hex2decimal(text);
+                 break;
+               default:
+                 alert("Unknown error");
+              }
+           }
+         
+         
+           function binary2hex (str)
+           {
+             var value = 0;
+             var place = 1;
+             var num;
+             var result = "";
+         
+             for (var i=str.length-1; i>=0; i--)
+             {       
+               num = binary.indexOf(str.charAt(i));
+         
+               if (num < 0)
+               {
+                 return "ERROR";
+               }
+               
+               value = value + place * num;
+               place = place * 2;
+         
+               if (place > 8)
+               {
+                 result = hex.charAt(value) + result;
+                 place = 1;
+                 value = 0;
+               }
+             }
+         
+             if (place > 1)
+               result = hex.charAt(value) + result;
+         
+             return result;
+           }
+         
+         
+           function decimal2binary (str)
+           {
+             var value = parseInt(str);
+             var place = 1;
+             var result = "";
+         
+             if (isNaN(str))
+             {
+               return "ERROR";
+             }
+         
+             while (place <= value)
+               place = place * 2;
+         
+             place = place / 2;
+         
+             do 
+             {
+               if (value - place < 0)
+               {
+                  result = result + "0";
+               }
+               else
+               {
+                  value = value - place;
+                  result = result + "1";
+               }
+         
+               place = place / 2;
+             }
+             while (place >= 1);
+         
+             return result;
+           }
+         
+         //my code. complicated way
+         
+         function binary2decimal (t)
+         {
+         var value = 0;
+         var i;
+         var count = 0;
+         
+         for (i = t.length- 1; i >= 0; i--) {
+         
+         if(t[i] =="1")
+         {		
+         value = value + Math.pow(2, count);				
+         }
+         
+         else if(t[i] =="0")
+         {
+         
+         }
+         
+         else if (t[i].match(notbinary)||t[i].match(halfforoutofrange))
+         {
+         return "Binary are only 0 to 1 ";
+         }
+         count = count + 1;
+         
+         		
+         }		
+         
+         
+         return  value;
+         
+         }
+         function decimal2hex(t){
+         
+         var result = parseInt(t);
+         var value = [];
+         var str;
+         var reservedvalue = [];
+         var tes = "";
+         
+         for(var i =0; i<t.length; i++){
+         if(t[i].match(notdecimal)||t[i].match(halfforoutofrange)){
+         return "ERROR";
+         }
+         }
+         
+         while(result > 15){
+         
+         result = result/16;
+         
+         str = result.toString();
+         
+         var split = str.split(".");
+         
+         var first = split[0];
+         var second = "."+split[1];	
+         result = "";
+         result = first;
+         
+         if(second == ".undefined"){
+         
+         second = " ";
+         second = 0;
+         }
+         var mutiplydecimal = second * 16;
+         
+         if(mutiplydecimal == 15){
+         value.push("F");
+         }
+         else if(mutiplydecimal == 14){
+         value.push("E");
+         }
+         else if(mutiplydecimal == 13){
+         value.push("D");
+         }
+         else if(mutiplydecimal == 12){
+         value.push("C");
+         }
+         else if(mutiplydecimal == 11){
+         value.push("B");
+         }
+         else if(mutiplydecimal == 10){
+         value.push("A");
+         }
+         else{
+         value.push(mutiplydecimal);
+         }
+         
+         
+         
+         if(result < 16){
+         
+         if(result == 15){
+         value.push("F");
+         }
+         else if(result == 14){
+         value.push("E");
+         }
+         else if(result == 13){
+         value.push("D");
+         }
+         else if(result == 12){
+         value.push("C");
+         }
+         else if(result == 11){
+         value.push("B");
+         }
+         else if(result == 10){
+         value.push("A");
+         }
+         else{
+         value.push(result);
+         }
+         
+         
+         }	
+         
+         }
+         for(var i= value.length-1; i >= 0; i--){
+         reservedvalue.push(value[i]);
+         }
+         return reservedvalue.join("");	
+         
+         }
+         function hex2binary(t){
+         
+         var value = 0;
+         var valueforsecond=0;
+         var i;
+         var count = 0;
+         var countsecond = 0;
+         var str = t.toString();
+         
+         
+         if(str.includes(".")==true){
+         var split = str.split(".");
+         var first = split[0];
+         var second = split[1];	
+         if(first !== ".undefinied"){
+         for (var ii = first.length- 1; ii >= 0; ii--) {
+         
+         if(first[ii].match(nothexdecimal)||first[ii].match(halfforoutofrange)){
+         return "ERROR";
+         }
+         	
+         else if(first[ii] =="A")
+         {		
+         value = value + Math.pow(16, count)*10;				
+         }
+         
+         else if(first[ii] =="B")
+         {
+         value = value + Math.pow(16, count)*11;	
+         }
+         else if(first[ii] =="C")
+         {
+         value = value + Math.pow(16, count)*12;	
+         }
+         else if(first[ii] =="D")
+         {
+         value = value + Math.pow(16, count)*13;	
+         }
+         else if(first[ii] =="E")
+         {
+         value = value + Math.pow(16, count)*14;	
+         }
+         else if(first[ii] =="F")
+         {
+         value = value + Math.pow(16, count)*15;	
+         }
+         else
+         {
+         value = value + Math.pow(16, count)*first[ii];	
+         }
+         
+         count = count + 1;
+         
+         
+         }
+         }
+         for (var iii = 0; iii  < second.length; iii++) {
+         
+         countsecond = countsecond - 1;
+         
+         if(second[iii].match(nothexdecimal)||second[iii].match(halfforoutofrange)){
+         return "ERROR";
+         }
+         
+         else if(second[iii] =="A")
+         {		
+         valueforsecond= valueforsecond + Math.pow(16, countsecond)*10;				
+         }
+         
+         else if(second[iii] =="B")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*11;	
+         }
+         else if(second[iii] =="C")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*12;	
+         }
+         else if(second[iii] =="D")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*13;	
+         }
+         else if(second[iii] =="E")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*14;	
+         }
+         else if(second[iii] =="F")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*15;	
+         }
+         else
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*second[iii];	
+         }
+         		
+         }
+         
+         }		
+         
+         else if(str.includes(".")==false){
+         
+         for (i = t.length- 1; i >= 0; i--) {
+         if(t[i].match(nothexdecimal)||t[i].match(halfforoutofrange)){
+         return "ERROR";
+         }
+         else if(t[i] =="A")
+         {		
+         value = value + Math.pow(16, count)*10;				
+         }
+         
+         else if(t[i] =="B")
+         {
+         value = value + Math.pow(16, count)*11;	
+         }
+         else if(t[i] =="C")
+         {
+         value = value + Math.pow(16, count)*12;	
+         }
+         else if(t[i] =="D")
+         {
+         value = value + Math.pow(16, count)*13;	
+         }
+         else if(t[i] =="E")
+         {
+         value = value + Math.pow(16, count)*14;	
+         }
+         else if(t[i] =="F")
+         {
+         value = value + Math.pow(16, count)*15;	
+         }
+         else
+         {
+         value = value + Math.pow(16, count)*t[i];	
+         }
+         
+         count = count + 1;
+         
+         			
+         }		
+         }
+         
+         var hextodecimal = value + valueforsecond;
+         
+         var value = parseInt(hextodecimal);
+         var place = 1;
+         var result = "";
+         
+         
+         while (place <= value)
+         place = place * 2;
+         
+         place = place / 2;
+         
+         do 
+         {
+         if (value - place < 0)
+         {
+          result = result + "0";
+         }
+         else
+         {
+          value = value - place;
+          result = result + "1";
+         }
+         
+         place = place / 2;
+         }
+         while (place >= 1);
+         
+         
+         return  result;
+         
+         }
+         
+         
+         
+         
+         function hex2decimal(t){		
+         var value = 0;
+         var valueforsecond=0;
+         var i;
+         var count = 0;
+         var countsecond = 0;
+         var str = t.toString();
+         
+         
+         if(str.includes(".")==true){
+         var split = str.split(".");
+         var first = split[0];
+         var second = split[1];	
+         if(first !== ".undefinied"){
+         for (var ii = first.length- 1; ii >= 0; ii--) {
+         
+         if(first[ii].match(nothexdecimal)||first[ii].match(halfforoutofrange)){
+         return "ERROR";
+         }
+         
+         else if(first[ii] =="A")
+         {		
+         value = value + Math.pow(16, count)*10;				
+         }
+         
+         else if(first[ii] =="B")
+         {
+         value = value + Math.pow(16, count)*11;	
+         }
+         else if(first[ii] =="C")
+         {
+         value = value + Math.pow(16, count)*12;	
+         }
+         else if(first[ii] =="D")
+         {
+         value = value + Math.pow(16, count)*13;	
+         }
+         else if(first[ii] =="E")
+         {
+         value = value + Math.pow(16, count)*14;	
+         }
+         else if(first[ii] =="F")
+         {
+         value = value + Math.pow(16, count)*15;	
+         }
+         else
+         {
+         value = value + Math.pow(16, count)*first[ii];	
+         }
+         
+         count = count + 1;
+         
+         
+         }
+         }
+         for (var iii = 0; iii  < second.length; iii++) {
+         
+         countsecond = countsecond - 1;
+         if(second[iii].match(nothexdecimal)||second[iii].match(halfforoutofrange)){
+         return "ERROR";
+         }
+         
+         else if(second[iii] =="A")
+         {		
+         valueforsecond= valueforsecond + Math.pow(16, countsecond)*10;				
+         }
+         
+         else if(second[iii] =="B")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*11;	
+         }
+         else if(second[iii] =="C")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*12;	
+         }
+         else if(second[iii] =="D")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*13;	
+         }
+         else if(second[iii] =="E")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*14;	
+         }
+         else if(second[iii] =="F")
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*15;	
+         }
+         else
+         {
+         valueforsecond = valueforsecond + Math.pow(16, countsecond)*second[iii];	
+         }
+         	
+         }
+         
+         }		
+         
+         else if(str.includes(".")==false){
+         
+         for (i = t.length- 1; i >= 0; i--) {
+         
+         if(t[i].match(nothexdecimal)||t[i].match(halfforoutofrange)){
+         return "ERROR";
+         }
+         
+         else if(t[i] =="A")
+         {		
+         value = value + Math.pow(16, count)*10;				
+         }
+         
+         else if(t[i] =="B")
+         {
+         value = value + Math.pow(16, count)*11;	
+         }
+         else if(t[i] =="C")
+         {
+         value = value + Math.pow(16, count)*12;	
+         }
+         else if(t[i] =="D")
+         {
+         value = value + Math.pow(16, count)*13;	
+         }
+         else if(t[i] =="E")
+         {
+         value = value + Math.pow(16, count)*14;	
+         }
+         else if(t[i] =="F")
+         {
+         value = value + Math.pow(16, count)*15;	
+         }
+         else
+         {
+         value = value + Math.pow(16, count)*t[i];	
+         }
+         
+         count = count + 1;
+         
+         		
+         }		
+         }
+         
+         
+         return  value+valueforsecond;
+         
+         }
+         -->
+      </script>
+   </head>
+   <body>
+      <form name="info">
+         Base: 
+         <select name="choice">
+            <option value="Binary-to-Decimal">Binary-to-Decimal</option>
+            <option value="Binary-to-Hex">Binary-to-Hex</option>
+            <option value="Decimal-to-Binary">Decimal-to-Binary</option>
+            <option value="Decimal-to-Hex">Decimal-to-Hex</option>
+            <option value="Hex-to-Binary">Hex-to-Binary</option>
+            <option value="Hex-to-Decimal">Hex-to-Decimal</option>
+         </select>
+         <input type="button" name="convert" value="Convert" onclick="Convert();">
+         <br>
+         Input: 
+         <textarea name="input" rows = 20 cols = 40></textarea>
+         Output:
+         <textarea name="output" rows = 20 cols = 40></textarea>
+      </form>
+   </body>
+</html>
