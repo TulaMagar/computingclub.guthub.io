@@ -8,21 +8,31 @@
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Sans Pro">
+      <style type="text/css">
+         #show-list a{
+            display: block;
+         }
+      </style>
    </head>
    <body>
-         <section class="main-header">
+         <section class="w3-hide-small main-header">
             <h1 class=" header"> welcome to computing club </h1>
          </section>
-         <nav class=" w3-container w3-hide-small w3-blue">
+         <section class="w3-show-small w3-hide-medium w3-hide-large main-header">
+            <h1 class="w3-center header-for-small"> welcome to <br/>computing club </h1>
+      </section>
+         <nav class="w3-container w3-hide-small w3-blue">
          <nav class="w3-container w3-blue w3-right menu">
             <nav class="w3-bar w3-green">
                <nav class="w3-dropdown-hover w3-green">
-                  <form class="menu-list" style="display: inline" action="programing/builtprograms.html" method="get">
+                  <form class="menu-list" style="display: inline" action="computingclubdescription/description.html" method="get">
                      <button class="w3-button">About us</button>
                   </form>
                   <nav class="w3-dropdown-content w3-bar-block w3-card-4">
-                     <a href="sign.html" class="w3-bar-item w3-button">sign in</a>
-                     <a href="location" class="w3-bar-item w3-button">loction</a>
+                     <a href="about_us/members.html" class="w3-bar-item w3-button">Members</a>
+                     <a href="about_us/event.html" class="w3-bar-item w3-button">Event</a>
+                     <a href="about_us/event_and_news.html" class="w3-bar-item w3-button">Event and News</a>
                   </nav>
                </nav>
                <nav class="w3-dropdown-hover">
@@ -30,8 +40,8 @@
                      <button class="w3-button">About club</button>
                   </form>
                   <nav class="w3-dropdown-content w3-bar-block w3-card-4">
-                     <a href="#" class="w3-bar-item w3-button">Join us</a>
-                     <a href="#contact_us" class="w3-bar-item w3-button">Contact us</a>
+                      <a href="computingclubdescription/description.html" class="w3-bar-item w3-button">description</a>
+                     <a href="#loction" class="w3-bar-item w3-button">Location</a>
                      <a href="Policy/policy.html" class="w3-bar-item w3-button">policy</a>
                   </nav>
                </nav>
@@ -47,33 +57,49 @@
          </nav>
      </nav>
 
-     <nav class="w3-container w3-left w3-show-small w3-hide-medium w3-hide-large test">
-         <h1 id="Close" onclick="show()">Bar</h1>
-            <nav id="showw" style="display: none;" onclick="expand()" >
-               <nav id="menu" > About us
-                  <nav id="show-list" style="display: none;">
-                     <a href= "builtprograms.html">About us</a> 
-                     <a href="sign.html">sign in</a>
+     <nav class="w3-container w3-show-small w3-hide-medium w3-hide-large w3-blue">
+         <nav class="w3-container w3-blue w3-center menu">
+            <nav class="w3-bar w3-green">
+               <nav class="w3-dropdown-hover w3-green">
+                  <form class="menu-list" style="display: inline" action="programing/builtprograms.html" method="get">
+                     <button class="w3-button">About us</button>
+                  </form>
+                  <nav class="w3-dropdown-content w3-bar-block w3-card-4">
+                      <a href="about_us/members.html" class="w3-bar-item w3-button">Members</a>
+                     <a href="about_us/event.html" class="w3-bar-item w3-button">Event</a>
+                     <a href="about_us/event_and_news.html" class="w3-bar-item w3-button">Event and News</a>
                   </nav>
-               </nav> 
-               <nav id="menu"> Programming
-                  <nav id="show-list" style="display: none;">
-                     <a href= "builtprograms.html">lsklfdj</a> 
-                     <a href="sign.html">sdfsd</a>
+               </nav>
+               <nav class="w3-dropdown-hover">
+                  <form class="menu-list" style="display: inline" action="programing/builtprograms.html" method="get">
+                     <button class="w3-button">About club</button>
+                  </form>
+                  <nav class="w3-dropdown-content w3-bar-block w3-card-4">
+                     <a href="/members.html" class="w3-bar-item w3-button">Members</a>
+                     <a href="#Loction" class="w3-bar-item w3-button">Location</a>
+                     <a href="Policy/policy.html" class="w3-bar-item w3-button">policy</a>
                   </nav>
-               </nav>           
-               
-               <a href="location">loction</a>
-           </nav>
+               </nav>
+               <nav class="w3-dropdown-hover">
+                  <form class="menu-list" style="display: inline" action="programing/builtprograms.html" method="get">
+                     <button class="w3-button">Developed</button>
+                  </form>
+                  <nav class="w3-dropdown-content w3-bar-block w3-card-4">
+                     <a href="programing/builtprograms.html" class="w3-bar-item w3-button">program builts</a>
+                  </nav>
+               </nav>
+            </nav>
+         </nav>
      </nav>
+
       <img id="slide" src="#" alt="image not found" width="90%">
       <div class="summary-of-computing-club">
          <p>
-            We are the University of New Hamshpier at Manchester computing students. In this computing club we built programs using one of the programing languages. We share our knowledge to real world problems.
+            We are the computing student at the University of New Hampshire at Manchester. In this computing club, we built programs using one of the programming languages. We share our knowledge to real-world problems.
          </p>
       </div>
-      <section class="w3-container w3-row-padding w3-black w3-text-white">
-         <h1 class="contact-title"> Contact us </h1>
+      <section class="w3-container w3-row-padding w3-black w3-text-white" id="loction">
+         <h1 class="contact-title"> Location </h1>
          <address class="w3-center address">
             <address class="w3-half remove-underline">
                <p>UNH at Manchester <br/>
@@ -94,10 +120,12 @@
          <a href="https://www.facebook.com/"><i class="fab fa-facebook-square fa-2x" > </i> </a>
          <a href="https://twitter.com/login?lang=en"><i class="fab fa-twitter-square fa-2x"></i></a>
          <a href="https://www.instagram.com/"><i class="fab fa-instagram fa-2x"></i></a>
+         <p class="w3-medium">Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
       </footer> 
 
       <!-- javascript-->
       <script src="jscript/imageslideshow.js"></script> 
+      
    </body>
 </html>
 

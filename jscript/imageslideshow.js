@@ -1,3 +1,28 @@
+function show(){
+    var x = document.getElementById("showw");
+    if (x.style.display === "none")
+    {
+       x.style.display = "block";
+       //x.style.class="w3-dropdown-hover"
+      // document.getElementById("Close").innerHTML = "Close";
+       x.style.width = "100%";
+    }
+    else{
+       x.style.display = "none";
+    }
+}
+function expand(number){
+    var y = event.target.firstElementChild;
+    if(y.style.display==="none")
+    {
+       y.style.display = "block";
+
+    }
+    else{
+       y.style.display = "none";
+    }
+}
+
 var images=["computerclubimage.jpg","Computing-feat.jpg", "computingimage.jpg","shutterstock.jpg"]
 automatic();
 var count =0;
